@@ -3,9 +3,10 @@ import './header.styles.scss';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
+import { User } from '../../App';
 
 type HeaderProps = {
-	currentUser: firebase.default.User | null | undefined;
+	currentUser: User | undefined | null;
 };
 
 const Header = ({ currentUser }: HeaderProps) => {
@@ -22,7 +23,7 @@ const Header = ({ currentUser }: HeaderProps) => {
 					CONTACT
 				</Link>
 				{currentUser ? (
-					<div className="option" onClick={() => auth.signOut()}>
+					<div className="option link" onClick={() => auth.signOut()}>
 						SIGN OUT
 					</div>
 				) : (
