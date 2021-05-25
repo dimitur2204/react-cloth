@@ -15,15 +15,9 @@ export default function SignUp() {
 		password: '',
 		confirmPassword: '',
 	});
-	useEffect(() => {
-		console.log(signUpInfo);
-	});
 	const { displayName, email, password, confirmPassword } = signUpInfo;
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		console.log(password);
-		console.log(confirmPassword);
-		console.log(password !== confirmPassword);
 		if (password !== confirmPassword) {
 			alert("Passwords don't match");
 			return;
@@ -52,7 +46,6 @@ export default function SignUp() {
 			name: string;
 		};
 		const { value, name } = target;
-		console.log(name, value);
 		setSignUpInfo({ ...signUpInfo, [name]: value });
 	};
 

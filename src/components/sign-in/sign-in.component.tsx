@@ -1,5 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import CustomButton from '../custom-button/custom-button.component';
 import FormInput from '../form-input/form-input.component';
 import './sign-in.styles.scss';
@@ -13,8 +13,14 @@ const SignIn = () => {
 		password: '',
 	});
 
-	const handleSubmit = (e: SyntheticEvent) => {
-		e.preventDefault();
+	const handleSubmit = async (e: SyntheticEvent) => {
+		const { email, password } = credentials;
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+			setCredentials({ email: '', password: '' });
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
