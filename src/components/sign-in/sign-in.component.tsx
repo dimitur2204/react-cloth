@@ -14,6 +14,7 @@ const SignIn = () => {
 	});
 
 	const handleSubmit = async (e: SyntheticEvent) => {
+		e.preventDefault();
 		const { email, password } = credentials;
 		try {
 			await auth.signInWithEmailAndPassword(email, password);
@@ -29,7 +30,7 @@ const SignIn = () => {
 			name: string;
 		};
 		const { value, name } = target;
-		setCredentials({ [name]: value });
+		setCredentials({ ...credentials, [name]: value });
 	};
 	return (
 		<div className="sign-in">
@@ -40,6 +41,7 @@ const SignIn = () => {
 				<FormInput
 					type="email"
 					label="Email"
+					name="email"
 					value={credentials.email}
 					handleChange={handleChange}
 					required
@@ -47,6 +49,7 @@ const SignIn = () => {
 				<FormInput
 					type="password"
 					label="Password"
+					name="password"
 					value={credentials.password}
 					handleChange={handleChange}
 					required
