@@ -1,3 +1,24 @@
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
+
+.container{
+  padding: 20px 60px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:after {
+  display:block;
+  content: '';
+  border-bottom: solid 1px black;  
+  transform: scaleX(0);  
+  transition: transform 350ms ease-in-out;
+}
+
+a:hover:after {
+   transform: scaleX(1); 
+}
