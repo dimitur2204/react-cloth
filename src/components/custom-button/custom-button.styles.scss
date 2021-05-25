@@ -1,3 +1,5 @@
+$google-blue:#4285F4;
+
 .custom-btn {
   min-width: 165px;
   width: auto;
@@ -14,7 +16,15 @@
   border: none;
   cursor: pointer;
   transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
-
+  &.google-sign-in{
+    background-color: $google-blue;
+    color: white;
+    &:hover {
+      background-color: #357ae8;
+      color: white;
+      border: none;
+    }
+  }
   &:hover {
     background-color: white;
     color: black;

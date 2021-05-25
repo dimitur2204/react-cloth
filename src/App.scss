@@ -2,6 +2,10 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
+*{
+box-sizing: border-box;
+}
+
 .container{
   padding: 20px 60px;
 }
