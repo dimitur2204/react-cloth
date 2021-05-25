@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
-import { AppState } from './redux/root-reducer';
 import HomePage from './pages/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInUpPage from './pages/sign-in-up/sign-in-up.component';
-import Header from './components/header/header.component';
+import Header from './components/shared/header/header.component';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import './App.scss';
+import { selectCurrentUser } from './redux/user/user.selectors';
 
 export type User = {
 	id: string;
@@ -20,7 +20,7 @@ export type User = {
 function App() {
 	const dispatch = useDispatch();
 
-	const user = useSelector((state: AppState) => state.user.currentUser);
+	const user = useSelector(selectCurrentUser);
 
 	useEffect(() => {
 		let unsubscribeFromAuth = () => {};

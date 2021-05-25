@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+import CollectionPreview from '../../components/collection/collection-preview/collection-preview.component';
 
 export type Collection = {
 	id: number;

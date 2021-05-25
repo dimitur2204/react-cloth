@@ -1,19 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/root-reducer';
 
 import './header.styles.scss';
 
-import { ReactComponent as Logo } from '../../assets/crown.svg';
-import { auth } from '../../firebase/firebase.utils';
-import CartIcon from '../cart-icon/cart-icon.component';
-import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { ReactComponent as Logo } from '../../../assets/crown.svg';
+import { auth } from '../../../firebase/firebase.utils';
+import CartIcon from '../../cart/cart-icon/cart-icon.component';
+import CartDropdown from '../../cart/cart-dropdown/cart-dropdown.component';
+import { selectCartHidden } from '../../../redux/cart/cart.selectors';
+import { selectCurrentUser } from '../../../redux/user/user.selectors';
 
 const Header = () => {
-	const user = useSelector((state: AppState) => state.user.currentUser);
-	const isHidden = useSelector(
-		(state: AppState) => state.cart.isDropdownHidden
-	);
+	const user = useSelector(selectCurrentUser);
+	const isHidden = useSelector(selectCartHidden);
 	return (
 		<div className="header">
 			<Link className="logo-container no-hover" to="/">

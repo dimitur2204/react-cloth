@@ -1,4 +1,4 @@
-import { CartItem as CartItemType } from '../../redux/cart/cart.utils';
+import { CartItem as CartItemType } from '../../../redux/cart/cart.utils';
 import './cart-item.styles.scss';
 
 export type CartItemProps = {

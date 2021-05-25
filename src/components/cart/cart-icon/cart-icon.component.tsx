@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactComponent as ShoppingBagIcon } from '../../assets/shopping-bag.svg';
-import { toggleDropdown } from '../../redux/cart/cart.actions';
-import { selectCartItemsCount } from '../../redux/cart/cart.selectors';
+import { toggleDropdown } from '../../../redux/cart/cart.actions';
+import { selectCartItemsCount } from '../../../redux/cart/cart.selectors';
+import { ReactComponent as ShoppingBagIcon } from '../../../assets/shopping-bag.svg';
 
 import './cart-icon.styles.scss';
 

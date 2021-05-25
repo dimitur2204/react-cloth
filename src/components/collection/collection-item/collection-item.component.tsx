@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
-import { Item } from '../../pages/shop/shop.component';
-import { addItem } from '../../redux/cart/cart.actions';
-import CustomButton from '../custom-button/custom-button.component';
+import { Item } from '../../../pages/shop/shop.component';
+import { addItem } from '../../../redux/cart/cart.actions';
+import CustomButton from '../../shared/base/custom-button/custom-button.component';
 import './collection-item.styles.scss';
 
 export type CollectionItemProps = {
