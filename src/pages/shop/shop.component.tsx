@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CollectionPreview from '../../components/collection-preview/collection-preview.component';
+import CollectionPreview from '../../components/collection/collection-preview/collection-preview.component';
 
 export type Collection = {
 	id: number;
@@ -264,7 +264,7 @@ const data = [
 ];
 
 const ShopPage = () => {
-	const [collections, _] = useState<Collection[]>(data);
+	const [collections] = useState<Collection[]>(data);
 	const previews = collections.map(({ id, ...collectionProps }) => (
 		<CollectionPreview key={id} {...collectionProps}></CollectionPreview>
 	));

@@ -1,7 +1,7 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { auth, createUserProfileDoc } from '../../firebase/firebase.utils';
-import CustomButton from '../custom-button/custom-button.component';
-import FormInput from '../form-input/form-input.component';
+import { auth, createUserProfileDoc } from '../../../firebase/firebase.utils';
+import CustomButton from '../../shared/base/custom-button/custom-button.component';
+import FormInput from '../../shared/form/form-input/form-input.component';
 import './sign-up.styles.scss';
 
 export type SignUpInfo = {
