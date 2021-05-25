@@ -11,6 +11,14 @@ a{
   color: black;
 }
 
+a.no-hover{
+
+  &:after{
+    content: none;
+  }
+  
+}
+
 a:after {
   display:block;
   content: '';
