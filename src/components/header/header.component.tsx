@@ -3,17 +3,15 @@ import './header.styles.scss';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
-import { User } from '../../App';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../redux/root-reducer';
 
-type HeaderProps = {
-	currentUser: User | undefined | null;
-};
-
-const Header = ({ currentUser }: HeaderProps) => {
+const Header = () => {
+	const user = useSelector((state: AppState) => state.user.currentUser);
 	return (
 		<div className="header">
 			<Link className="logo-container no-hover" to="/">
-				<Logo className="logo"></Logo>
+				<Logo className="logo" />
 			</Link>
 			<div className="options">
 				<Link className="option" to="/shop">
@@ -22,13 +20,13 @@ const Header = ({ currentUser }: HeaderProps) => {
 				<Link className="option" to="/contact">
 					CONTACT
 				</Link>
-				{currentUser ? (
+				{user ? (
 					<div className="option link" onClick={() => auth.signOut()}>
 						SIGN OUT
 					</div>
 				) : (
 					<Link className="option" to={'/signin'}>
-						Sign in
+						SIGN IN
 					</Link>
 				)}
 			</div>
