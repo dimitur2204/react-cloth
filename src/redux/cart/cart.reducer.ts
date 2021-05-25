@@ -4,7 +4,7 @@ import { addItemToCart, CartItem } from './cart.utils';
 
 export type CartState = {
 	isDropdownHidden: boolean;
-	cartItems: [];
+	cartItems: CartItem[];
 };
 
 const INITIAL_STATE: CartState = {
