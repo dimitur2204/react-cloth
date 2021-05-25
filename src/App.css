@@ -1,3 +1,7 @@
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
+
+.container{
+  padding: 20px 60px;
+}
