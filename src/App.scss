@@ -2,13 +2,38 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 
+*{
+box-sizing: border-box;
+}
+
 .container{
   padding: 20px 60px;
+}
+
+.link{
+  text-decoration: none;
+  color: black;
+  &::after{
+    display:block;
+  content: '';
+  border-bottom: solid 1px black;  
+  transform: scaleX(0);  
+  transition: transform 350ms ease-in-out;
+  }
+  &:hover::after{
+   transform: scaleX(1); 
+  }
 }
 
 a{
   text-decoration: none;
   color: black;
+}
+
+a.no-hover{
+  &:after{
+    content: none;
+  }
 }
 
 a:after {
