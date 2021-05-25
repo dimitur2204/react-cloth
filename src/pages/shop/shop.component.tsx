@@ -264,7 +264,7 @@ const data = [
 ];
 
 const ShopPage = () => {
-	const [collections, _] = useState<Collection[]>(data);
+	const [collections] = useState<Collection[]>(data);
 	const previews = collections.map(({ id, ...collectionProps }) => (
 		<CollectionPreview key={id} {...collectionProps}></CollectionPreview>
 	));

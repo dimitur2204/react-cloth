@@ -45,10 +45,10 @@ function App() {
 		return () => {
 			unsubscribeFromAuth();
 		};
-	}, []);
+	}, [dispatch]);
 
 	return (
-		<div>
+		<div className="container">
 			<Header />
 			<Switch>
 				<Route exact path="/" component={HomePage} />

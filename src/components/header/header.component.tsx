@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../redux/root-reducer';
+
 import './header.styles.scss';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { auth } from '../../firebase/firebase.utils';
-import { useSelector } from 'react-redux';
-import { AppState } from '../../redux/root-reducer';
+import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 const Header = () => {
 	const user = useSelector((state: AppState) => state.user.currentUser);
+	const isHidden = useSelector(
+		(state: AppState) => state.cart.isDropdownHidden
+	);
 	return (
 		<div className="header">
 			<Link className="logo-container no-hover" to="/">
@@ -29,7 +35,9 @@ const Header = () => {
 						SIGN IN
 					</Link>
 				)}
+				<CartIcon></CartIcon>
 			</div>
+			{isHidden ? null : <CartDropdown></CartDropdown>}
 		</div>
 	);
 };
