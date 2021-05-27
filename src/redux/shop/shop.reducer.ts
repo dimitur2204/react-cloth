@@ -1,9 +1,9 @@
-import { Collection } from '../../pages/shop/shop.component';
+import { Collections } from '../../pages/shop/shop.component';
 import { Action } from '../helpers';
 import SHOP_DATA from './shop.data';
 
 export type ShopState = {
-	collections: Collection[];
+	collections: Collections;
 };
 
 const INITIAL_STATE: ShopState = {

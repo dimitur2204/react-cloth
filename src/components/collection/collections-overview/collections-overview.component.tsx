@@ -6,7 +6,7 @@ export default function CollectionsOverview() {
 	const collections = useSelector(selectCollections);
 	return (
 		<div>
-			{collections.map(({ id, ...props }) => (
+			{Object.values(collections).map(({ id, ...props }) => (
 				<CollectionPreview key={id} {...props}></CollectionPreview>
 			))}
 		</div>
