@@ -17,7 +17,7 @@ const INITIAL_STATE: CartState = {
 	cartItems: [],
 };
 
-const cartReducer = (state = INITIAL_STATE, action: Action) => {
+const cartReducer = (state = INITIAL_STATE, action: Action<any>) => {
 	switch (action.type) {
 		case cartActions.TOGGLE_CART_DROPDOWN:
 			return {
