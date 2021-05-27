@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import CheckoutItem from '../../components/checkout/checkout-item/checkout-item.component';
+import StripeButton from '../../components/stripe/stripe-button.component';
 import {
 	selectCartItems,
 	selectCartItemsTotalPrice,
@@ -29,12 +30,18 @@ const CheckoutPage = () => {
 				</div>
 			</div>
 			{cartItems.map((cartItem) => (
-				<CheckoutItem item={cartItem} />
+				<CheckoutItem key={cartItem.id} item={cartItem} />
 			))}
 
 			<div className="total">
 				<span>Total: ${cartPrice}</span>
 			</div>
+			<div className="test-warning">
+				*Please use the following test credit card for payments
+				<br />
+				4242 4242 4242 4242 - Exp: 'Any future date' - CVV: 'Any 3 digits'
+			</div>
+			<StripeButton price={cartPrice} />
 		</div>
 	);
 };
