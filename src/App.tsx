@@ -9,6 +9,7 @@ import Header from './components/shared/header/header.component';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import './App.scss';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 export type User = {
 	id: string;
@@ -23,25 +24,21 @@ function App() {
 	const user = useSelector(selectCurrentUser);
 
 	useEffect(() => {
-		let unsubscribeFromAuth = () => {};
-		const afterMount = () => {
-			unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-				if (userAuth) {
-					const userRef = await createUserProfileDoc(userAuth);
+		let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+			if (userAuth) {
+				const userRef = await createUserProfileDoc(userAuth);
 
-					userRef?.onSnapshot((snapShot) => {
-						dispatch(
-							setCurrentUser({
-								id: snapShot.id,
-								...snapShot.data(),
-							})
-						);
-					});
-				}
-				dispatch(setCurrentUser(null));
-			});
-		};
-		afterMount();
+				userRef?.onSnapshot((snapShot) => {
+					dispatch(
+						setCurrentUser({
+							id: snapShot.id,
+							...snapShot.data(),
+						})
+					);
+				});
+			}
+			dispatch(setCurrentUser(null));
+		});
 		return () => {
 			unsubscribeFromAuth();
 		};
@@ -53,6 +50,7 @@ function App() {
 			<Switch>
 				<Route exact path="/" component={HomePage} />
 				<Route path="/shop" component={ShopPage} />
+				<Route exact path="/checkout" component={CheckoutPage} />
 				<Route
 					path="/signin"
 					render={() => (user ? <Redirect to={'/'} /> : <SignInUpPage />)}
