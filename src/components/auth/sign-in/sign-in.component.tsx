@@ -1,5 +1,7 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { auth, signInWithGoogle } from '../../../firebase/firebase.utils';
+import { useDispatch } from 'react-redux';
+import { auth } from '../../../firebase/firebase.utils';
+import { googleSignInStart } from '../../../redux/user/user.actions';
 import CustomButton from '../../shared/base/custom-button/custom-button.component';
 import FormInput from '../../shared/form/form-input/form-input.component';
 import './sign-in.styles.scss';
@@ -8,6 +10,7 @@ export type SignInCredentials = {
 	[key: string]: string;
 };
 const SignIn = () => {
+	const dispatch = useDispatch();
 	const [credentials, setCredentials] = useState<SignInCredentials>({
 		email: '',
 		password: '',
@@ -31,6 +34,9 @@ const SignIn = () => {
 		};
 		const { value, name } = target;
 		setCredentials({ ...credentials, [name]: value });
+	};
+	const handleGoogleSignInClicked = () => {
+		dispatch(googleSignInStart());
 	};
 	return (
 		<div className="sign-in">
@@ -56,7 +62,11 @@ const SignIn = () => {
 				></FormInput>
 				<div className="buttons">
 					<CustomButton type="submit">Sign in</CustomButton>
-					<CustomButton type="button" isGoogleSignIn onClick={signInWithGoogle}>
+					<CustomButton
+						type="button"
+						isGoogleSignIn
+						onClick={handleGoogleSignInClicked}
+					>
 						Sign in with Google
 					</CustomButton>
 				</div>

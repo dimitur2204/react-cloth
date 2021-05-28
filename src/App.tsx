@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
 import HomePage from './pages/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInUpPage from './pages/sign-in-up/sign-in-up.component';
 import Header from './components/shared/header/header.component';
-import { auth, createUserProfileDoc } from './firebase/firebase.utils';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
 import './App.scss';
@@ -24,24 +22,23 @@ function App() {
 	const user = useSelector(selectCurrentUser);
 
 	useEffect(() => {
-		let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-			if (userAuth) {
-				const userRef = await createUserProfileDoc(userAuth);
-
-				userRef?.onSnapshot((snapShot) => {
-					dispatch(
-						setCurrentUser({
-							id: snapShot.id,
-							...snapShot.data(),
-						})
-					);
-				});
-			}
-			dispatch(setCurrentUser(null));
-		});
-		return () => {
-			unsubscribeFromAuth();
-		};
+		// let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+		// 	if (userAuth) {
+		// 		const userRef = await createUserProfileDoc(userAuth);
+		// 		userRef?.onSnapshot((snapShot) => {
+		// 			dispatch(
+		// 				setCurrentUser({
+		// 					id: snapShot.id,
+		// 					...snapShot.data(),
+		// 				})
+		// 			);
+		// 		});
+		// 	}
+		// 	dispatch(setCurrentUser(null));
+		// });
+		// return () => {
+		// 	unsubscribeFromAuth();
+		// };
 	}, [dispatch]);
 
 	return (
