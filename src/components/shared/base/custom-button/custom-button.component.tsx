@@ -1,26 +1,15 @@
 import { ComponentProps, PropsWithChildren } from 'react';
-import './custom-button.styles.scss';
-
+import { CustomButtonContainer } from './custom-button.styles';
 export interface CustomButtonProps
 	extends PropsWithChildren<ComponentProps<'button'>> {
 	isGoogleSignIn?: boolean;
 	inverted?: boolean;
 }
-const CustomButton = ({
-	children,
-	isGoogleSignIn,
-	inverted,
-	...props
-}: CustomButtonProps) => {
+const CustomButton = (props: CustomButtonProps) => {
 	return (
-		<button
-			className={`${inverted ? 'inverted' : ''} ${
-				isGoogleSignIn ? 'google-sign-in' : ''
-			} custom-btn`}
-			{...props}
-		>
-			{children}
-		</button>
+		<CustomButtonContainer {...(props as any)}>
+			{props.children}
+		</CustomButtonContainer>
 	);
 };
 

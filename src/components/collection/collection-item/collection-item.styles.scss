@@ -15,7 +15,7 @@
     transition: opacity 250ms ease-in-out;
   }
 
-  .custom-btn {
+  button {
     width: 80%;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
     opacity: 0.7;
@@ -30,7 +30,7 @@
       opacity: 0.8;
     }
 
-    .custom-btn{
+    button{
       opacity: 0.85;
       display: flex;
     }
