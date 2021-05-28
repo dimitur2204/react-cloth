@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import { User } from '../App';
+import { Collection, Collections } from '../pages/shop/shop.component';
 
 const config = {
 	apiKey: 'AIzaSyBu3NNOYGjWYrsZQx7G-AgnKuQ1WrnWldw',
@@ -13,12 +14,13 @@ const config = {
 	measurementId: 'G-GRSCZHER1Q',
 };
 
-const converter = {
-	toFirestore: (data: User) => data,
-	fromFirestore: (snap: firebase.firestore.QueryDocumentSnapshot) =>
-		snap.data() as User,
-};
-
+export function converter<T>() {
+	return {
+		toFirestore: (data: T) => data,
+		fromFirestore: (snap: firebase.firestore.QueryDocumentSnapshot) =>
+			snap.data() as T,
+	};
+}
 export const createUserProfileDoc = async (
 	userAuth: firebase.User | null,
 	data: any = null
@@ -26,7 +28,7 @@ export const createUserProfileDoc = async (
 	if (!userAuth) return;
 	const userRef = firestore
 		.doc(`users/${userAuth.uid}`)
-		.withConverter(converter);
+		.withConverter(converter<User>());
 	const snapshot = await userRef.get();
 	if (!snapshot.exists) {
 		const { displayName, email } = userAuth;
@@ -44,6 +46,40 @@ export const createUserProfileDoc = async (
 		}
 	}
 	return userRef;
+};
+
+export const addCollectionAndDocs = async (
+	collectionKey: string,
+	objectsToAdd: any[]
+) => {
+	const collectionRef = firestore.collection(collectionKey);
+	const batch = firestore.batch();
+
+	objectsToAdd.forEach((obj) => {
+		const newDocRef = collectionRef.doc();
+		batch.set(newDocRef, obj);
+	});
+
+	return await batch.commit();
+};
+
+export const convertCollectionSnapshotToMap = (
+	snap: firebase.firestore.QuerySnapshot<Collection>
+) => {
+	const tranformedCollection = snap.docs.map((doc) => {
+		const { title, items } = doc.data();
+		return {
+			routeName: encodeURI(title.toLowerCase()),
+			id: doc.id,
+			title,
+			items,
+		};
+	});
+
+	return tranformedCollection.reduce<Collections>((acc, curr) => {
+		acc[curr.title.toLowerCase()] = curr;
+		return acc;
+	}, {});
 };
 
 firebase.initializeApp(config);

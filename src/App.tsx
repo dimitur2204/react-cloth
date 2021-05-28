@@ -7,9 +7,9 @@ import ShopPage from './pages/shop/shop.component';
 import SignInUpPage from './pages/sign-in-up/sign-in-up.component';
 import Header from './components/shared/header/header.component';
 import { auth, createUserProfileDoc } from './firebase/firebase.utils';
-import './App.scss';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
+import './App.scss';
 
 export type User = {
 	id: string;
