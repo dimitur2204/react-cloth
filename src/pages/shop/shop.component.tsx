@@ -1,15 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, useRouteMatch } from 'react-router';
-import CollectionsOverview from '../../components/collection/collections-overview/collections-overview.component';
-import withSpinner from '../../components/shared/with-spinner/with-spinner.component';
-import {
-	converter,
-	convertCollectionSnapshotToMap,
-	firestore,
-} from '../../firebase/firebase.utils';
-import { updateCollections } from '../../redux/shop/shop.actions';
-import CollectionPage from '../collection/collection.components';
+import CollectionsOverviewContainer from '../../components/collection/collections-overview/collections-overview.container';
+import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import CollectionPageContainer from '../collection/collection.container';
 
 export type Collection = {
 	id: string;
@@ -29,38 +23,22 @@ export type Item = {
 	price: number;
 };
 
-const CollectionsOverviewWithSpinner = withSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = withSpinner(CollectionPage);
-
 const ShopPage = () => {
 	const match = useRouteMatch();
 	const dispatch = useDispatch();
-	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		const collectionRef = firestore
-			.collection('collections')
-			.withConverter(converter<Collection>());
-
-		collectionRef.get().then((snap) => {
-			const collectionMap = convertCollectionSnapshotToMap(snap);
-			dispatch(updateCollections(collectionMap));
-			setLoading(false);
-		});
+		dispatch(fetchCollectionsStartAsync());
 	}, [dispatch]);
 	return (
 		<div className="shop-page">
 			<Route
 				exact
 				path={`${match.path}`}
-				render={(_) => (
-					<CollectionsOverviewWithSpinner isLoading={loading} props={_} />
-				)}
+				component={CollectionsOverviewContainer}
 			></Route>
 			<Route
 				path={`${match.path}/:collectionId`}
-				render={(_) => (
-					<CollectionPageWithSpinner isLoading={loading} props={_} />
-				)}
+				component={CollectionPageContainer}
 			></Route>
 		</div>
 	);
