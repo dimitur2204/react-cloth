@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, useRouteMatch } from 'react-router';
 import CollectionsOverviewContainer from '../../components/collection/collections-overview/collections-overview.container';
-import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import CollectionPageContainer from '../collection/collection.container';
 
 export type Collection = {
@@ -27,7 +27,7 @@ const ShopPage = () => {
 	const match = useRouteMatch();
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(fetchCollectionsStartAsync());
+		dispatch(fetchCollectionsStart());
 	}, [dispatch]);
 	return (
 		<div className="shop-page">

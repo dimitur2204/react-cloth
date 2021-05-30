@@ -1,7 +1,6 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../../assets/crown.svg';
-import { auth } from '../../../firebase/firebase.utils';
 import CartIcon from '../../cart/cart-icon/cart-icon.component';
 import CartDropdown from '../../cart/cart-dropdown/cart-dropdown.component';
 import { selectCartHidden } from '../../../redux/cart/cart.selectors';
@@ -13,10 +12,16 @@ import {
 	OptionLink,
 	OptionsContainer,
 } from './header.styles';
+import { SyntheticEvent } from 'react';
+import { signOutStart } from '../../../redux/user/user.actions';
 
 const Header = () => {
 	const user = useSelector(selectCurrentUser);
+	const dispatch = useDispatch();
 	const isHidden = useSelector(selectCartHidden);
+	const handleSignOutClicked = (e: SyntheticEvent) => {
+		dispatch(signOutStart());
+	};
 	return (
 		<HeaderContainer className="header">
 			<LogoContainer className="logo-container no-hover" to="/">
@@ -33,7 +38,7 @@ const Header = () => {
 					<OptionLink
 						as="div"
 						className="option link"
-						onClick={() => auth.signOut()}
+						onClick={handleSignOutClicked}
 					>
 						SIGN OUT
 					</OptionLink>

@@ -1,5 +1,10 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
-import { auth, signInWithGoogle } from '../../../firebase/firebase.utils';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	emailSignInStart,
+	googleSignInStart,
+} from '../../../redux/user/user.actions';
+import { selectSignInError } from '../../../redux/user/user.selectors';
 import CustomButton from '../../shared/base/custom-button/custom-button.component';
 import FormInput from '../../shared/form/form-input/form-input.component';
 import './sign-in.styles.scss';
@@ -8,6 +13,8 @@ export type SignInCredentials = {
 	[key: string]: string;
 };
 const SignIn = () => {
+	const dispatch = useDispatch();
+	const error = useSelector(selectSignInError);
 	const [credentials, setCredentials] = useState<SignInCredentials>({
 		email: '',
 		password: '',
@@ -16,12 +23,7 @@ const SignIn = () => {
 	const handleSubmit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 		const { email, password } = credentials;
-		try {
-			await auth.signInWithEmailAndPassword(email, password);
-			setCredentials({ email: '', password: '' });
-		} catch (error) {
-			console.error(error);
-		}
+		dispatch(emailSignInStart(email, password));
 	};
 
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +33,9 @@ const SignIn = () => {
 		};
 		const { value, name } = target;
 		setCredentials({ ...credentials, [name]: value });
+	};
+	const handleGoogleSignInClicked = () => {
+		dispatch(googleSignInStart());
 	};
 	return (
 		<div className="sign-in">
@@ -56,10 +61,15 @@ const SignIn = () => {
 				></FormInput>
 				<div className="buttons">
 					<CustomButton type="submit">Sign in</CustomButton>
-					<CustomButton type="button" isGoogleSignIn onClick={signInWithGoogle}>
+					<CustomButton
+						type="button"
+						isGoogleSignIn
+						onClick={handleGoogleSignInClicked}
+					>
 						Sign in with Google
 					</CustomButton>
 				</div>
+				{error}
 			</form>
 		</div>
 	);
