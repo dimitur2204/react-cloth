@@ -2,6 +2,7 @@
   "name": "react-cloth",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -18,6 +19,7 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/styled-components": "^5.1.9",
+    "axios": "^0.21.1",
     "firebase": "^8.6.2",
     "node-sass": "4.14.1",
     "react": "^17.0.2",
