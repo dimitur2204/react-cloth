@@ -3,25 +3,20 @@ import { Action } from '../helpers';
 
 export const userActions = {
 	GOOGLE_SIGN_IN_START: 'GOOGLE_SIGN_IN_START',
-	GOOGLE_SIGN_IN_SUCCESS: 'GOOGLE_SIGN_IN_SUCCESS',
-	GOOGLE_SIGN_IN_FAILURE: 'GOOGLE_SIGN_IN_FAILURE',
 	EMAIL_SIGN_IN_START: 'EMAIL_SIGN_IN_START',
-	EMAIL_SIGN_IN_SUCCESS: 'EMAIL_SIGN_IN_SUCCESS',
-	EMAIL_SIGN_IN_FAILURE: 'EMAIL_SIGN_IN_FAILURE',
+	SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
+	SIGN_IN_FAILURE: 'SIGN_IN_FAILURE',
+	SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
+	SIGN_UP_FAILURE: 'SIGN_UP_FAILURE',
+	SIGN_UP_START: 'SIGN_UP_START',
+	CHECK_USER_SESSION: 'CHECK_USER_SESSION',
+	SIGN_OUT_SUCCESS: 'SIGN_OUT_SUCCESS',
+	SIGN_OUT_FAILURE: 'SIGN_OUT_FAILURE',
+	SIGN_OUT_START: 'SIGN_OUT_START',
 };
 
 export const googleSignInStart = (): Action => ({
 	type: userActions.GOOGLE_SIGN_IN_START,
-});
-
-export const googleSignInSuccess = (user: User): Action<User> => ({
-	type: userActions.GOOGLE_SIGN_IN_SUCCESS,
-	payload: user,
-});
-
-export const googleSignInFailure = (errMessage: string): Action<string> => ({
-	type: userActions.GOOGLE_SIGN_IN_FAILURE,
-	payload: errMessage,
 });
 
 export const emailSignInStart = (
@@ -32,12 +27,51 @@ export const emailSignInStart = (
 	payload: { email, password },
 });
 
-export const emailSignInSuccess = (user: User): Action<User> => ({
-	type: userActions.EMAIL_SIGN_IN_SUCCESS,
+export const signInSuccess = (user: User): Action<User> => ({
+	type: userActions.SIGN_IN_SUCCESS,
 	payload: user,
 });
 
-export const emailSignInFailure = (errMessage: string): Action<string> => ({
-	type: userActions.EMAIL_SIGN_IN_FAILURE,
+export const signInFailure = (errMessage: string): Action<string> => ({
+	type: userActions.SIGN_IN_FAILURE,
+	payload: errMessage,
+});
+
+export const checkUserSession = (): Action => ({
+	type: userActions.CHECK_USER_SESSION,
+});
+
+export const signOutStart = (): Action => ({
+	type: userActions.SIGN_OUT_START,
+});
+
+export const signOutSuccess = (): Action => ({
+	type: userActions.SIGN_OUT_SUCCESS,
+});
+
+export const signOutFailure = (errMessage: string): Action<string> => ({
+	type: userActions.SIGN_OUT_FAILURE,
+	payload: errMessage,
+});
+
+export const signUpStart = (
+	email: string,
+	password: string,
+	displayName: string
+): Action<{ email: string; password: string; displayName: string }> => ({
+	type: userActions.SIGN_UP_START,
+	payload: { email, password, displayName },
+});
+
+export const signUpSuccess = (
+	email: string,
+	password: string
+): Action<firebase.default.User> => ({
+	type: userActions.SIGN_UP_SUCCESS,
+	payload: { email, password },
+});
+
+export const signUpFailure = (errMessage: string): Action<string> => ({
+	type: userActions.SIGN_UP_FAILURE,
 	payload: errMessage,
 });

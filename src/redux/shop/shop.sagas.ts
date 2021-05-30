@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery, call, put, all } from 'redux-saga/effects';
 import {
 	convertCollectionSnapshotToMap,
 	converter,
@@ -26,4 +26,8 @@ export function* fetchCollectionsAsync(): Generator<any, any, any> {
 
 export function* fetchCollectionsStart() {
 	yield takeEvery(shopActions.FETCH_COLLECTIONS_START, fetchCollectionsAsync);
+}
+
+export function* shopSagas() {
+	yield all([call(fetchCollectionsStart)]);
 }

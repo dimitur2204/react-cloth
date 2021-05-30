@@ -8,6 +8,7 @@ import Header from './components/shared/header/header.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
 import './App.scss';
+import { checkUserSession } from './redux/user/user.actions';
 
 export type User = {
 	id: string;
@@ -22,23 +23,7 @@ function App() {
 	const user = useSelector(selectCurrentUser);
 
 	useEffect(() => {
-		// let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-		// 	if (userAuth) {
-		// 		const userRef = await createUserProfileDoc(userAuth);
-		// 		userRef?.onSnapshot((snapShot) => {
-		// 			dispatch(
-		// 				setCurrentUser({
-		// 					id: snapShot.id,
-		// 					...snapShot.data(),
-		// 				})
-		// 			);
-		// 		});
-		// 	}
-		// 	dispatch(setCurrentUser(null));
-		// });
-		// return () => {
-		// 	unsubscribeFromAuth();
-		// };
+		dispatch(checkUserSession());
 	}, [dispatch]);
 
 	return (

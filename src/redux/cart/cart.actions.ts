@@ -7,6 +7,7 @@ export const cartActions = {
 	ADD_ITEM: 'ADD_ITEM',
 	REMOVE_ITEM: 'REMOVE_ITEM',
 	DECREASE_ITEM: 'DECREASE_ITEM',
+	CLEAR_CART: 'CLEAR_CART',
 };
 
 export const toggleDropdown = (): Action<boolean> => ({
@@ -27,4 +28,8 @@ export const removeItem = (id: number): Action<number> => ({
 export const decreaseItem = (id: CartItem): Action<CartItem> => ({
 	type: cartActions.DECREASE_ITEM,
 	payload: id,
+});
+
+export const clearCart = (): Action => ({
+	type: cartActions.CLEAR_CART,
 });
