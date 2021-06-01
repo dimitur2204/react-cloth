@@ -26,7 +26,6 @@ export function* getSnapshotFromUserAuth(
 		const userSnapshot = yield userRef.get();
 		yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
 	} catch (error) {
-		console.error(error);
 		yield put(signInFailure(error.message));
 	}
 }
@@ -60,16 +59,14 @@ export function* onSignInWithEmailAndPassword() {
 	yield takeLatest(userActions.EMAIL_SIGN_IN_START, signInWithEmailAndPassword);
 }
 
-export function* signUpStart({
+export function* signUpStartSaga({
 	payload: { email, password, displayName },
 }: Action<{ email: string; password: string; displayName: string }>): Generator<
 	any,
 	any,
 	any
 > {
-	console.log('start');
 	try {
-		console.log('start');
 		yield auth.createUserWithEmailAndPassword(email, password);
 		yield put(signUpSuccess(email, password));
 	} catch (error) {
@@ -78,7 +75,7 @@ export function* signUpStart({
 }
 
 export function* onSignUpStart() {
-	yield takeLatest(userActions.SIGN_UP_START, signUpStart);
+	yield takeLatest(userActions.SIGN_UP_START, signUpStartSaga);
 }
 
 export function* signUpSuccessSaga({

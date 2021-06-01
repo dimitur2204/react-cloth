@@ -21,6 +21,7 @@ const userReducer = (state = INITIAL_STATE, action: Action): UserState => {
 				errorMessage: '',
 			};
 		case userActions.SIGN_IN_FAILURE:
+		case userActions.SIGN_UP_FAILURE:
 		case userActions.SIGN_OUT_FAILURE:
 			return {
 				...state,

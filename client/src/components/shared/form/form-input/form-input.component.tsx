@@ -5,7 +5,7 @@ import {
 } from './form-input.styles';
 
 export interface FormInputProps extends React.HTMLProps<HTMLInputElement> {
-	handleChange: React.ChangeEventHandler<HTMLInputElement>;
+	handleChange?: React.ChangeEventHandler<HTMLInputElement>;
 	label?: string;
 }
 

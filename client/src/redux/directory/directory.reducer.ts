@@ -12,7 +12,7 @@ export type Section = {
 	size?: string;
 };
 
-const INITIAL_STATE: DirectoryState = {
+export const INITIAL_STATE: DirectoryState = {
 	sections: [
 		{
 			title: 'hats',
