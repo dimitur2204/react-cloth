@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { CartItem as CartItemType } from '../../../redux/cart/cart.utils';
 import {
 	CartItemContainer,
@@ -22,4 +23,4 @@ const CartItem = ({
 	</CartItemContainer>
 );
 
-export default CartItem;
+export default memo(CartItem);
