@@ -71,7 +71,9 @@
 ## About The Project
 
 [![React Cloth][product-screenshot]](./client/public/screenshot.png)
-[![React Cloth][product-screenshot]](./client/public/screenshot-mobile.jpg)
+
+
+[![React Cloth][product-screenshot-mobile]](./client/public/screenshot-mobile.jpg)
 
 A Progressive Web App (PWA) e-commerce platform aimed to show off my React skills. You can check it out live at the link above. You can register with email or sign-in with Google. Add items to your cart and checkout with Stripe.
 ### Built With
@@ -188,3 +190,4 @@ Project Link: [https://github.com/dimitur2204/react-cloth](https://github.com/di
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dimitar-nizamov-9180121a2/
 [product-screenshot]: ./client/public/screenshot.png
+[product-screenshot-mobile]: ./client/public/screenshot-mobile.jpg
