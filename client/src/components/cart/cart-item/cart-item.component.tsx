@@ -1,5 +1,9 @@
 import { CartItem as CartItemType } from '../../../redux/cart/cart.utils';
-import './cart-item.styles.scss';
+import {
+	CartItemContainer,
+	CartItemImage,
+	ItemDetailsContainer,
+} from './cart-item.styles';
 
 export type CartItemProps = {
 	item: CartItemType;
@@ -7,15 +11,15 @@ export type CartItemProps = {
 const CartItem = ({
 	item: { imageUrl, price, name, quantity },
 }: CartItemProps) => (
-	<div className="cart-item">
-		<img src={imageUrl} alt="item" />
-		<div className="item-details">
+	<CartItemContainer>
+		<CartItemImage src={imageUrl} alt="item" />
+		<ItemDetailsContainer className="item-details">
 			<span className="name">{name}</span>
 			<span className="price">
 				{quantity} x ${price}
 			</span>
-		</div>
-	</div>
+		</ItemDetailsContainer>
+	</CartItemContainer>
 );
 
 export default CartItem;

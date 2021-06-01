@@ -7,7 +7,11 @@ import {
 import { selectSignInError } from '../../../redux/user/user.selectors';
 import CustomButton from '../../shared/base/custom-button/custom-button.component';
 import FormInput from '../../shared/form/form-input/form-input.component';
-import './sign-in.styles.scss';
+import {
+	ButtonsBarContainer,
+	SignInContainer,
+	SignInTitle,
+} from './sign-in.styles';
 
 export type SignInCredentials = {
 	[key: string]: string;
@@ -38,8 +42,8 @@ const SignIn = () => {
 		dispatch(googleSignInStart());
 	};
 	return (
-		<div className="sign-in">
-			<h2 className="title">I already have an account</h2>
+		<SignInContainer>
+			<SignInTitle>I already have an account</SignInTitle>
 			<span>Sign in with your email and password</span>
 
 			<form action="" onSubmit={handleSubmit}>
@@ -59,7 +63,7 @@ const SignIn = () => {
 					handleChange={handleChange}
 					required
 				></FormInput>
-				<div className="buttons">
+				<ButtonsBarContainer>
 					<CustomButton type="submit">Sign in</CustomButton>
 					<CustomButton
 						type="button"
@@ -68,10 +72,10 @@ const SignIn = () => {
 					>
 						Sign in with Google
 					</CustomButton>
-				</div>
+				</ButtonsBarContainer>
 				{error}
 			</form>
-		</div>
+		</SignInContainer>
 	);
 };
 

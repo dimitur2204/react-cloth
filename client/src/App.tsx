@@ -7,8 +7,8 @@ import SignInUpPage from './pages/sign-in-up/sign-in-up.component';
 import Header from './components/shared/header/header.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckoutPage from './pages/checkout/checkout.component';
-import './App.scss';
 import { checkUserSession } from './redux/user/user.actions';
+import GlobalStyle from './global.styles';
 
 export type User = {
 	id: string;
@@ -28,6 +28,7 @@ function App() {
 
 	return (
 		<div className="container">
+			<GlobalStyle />
 			<Header />
 			<Switch>
 				<Route exact path="/" component={HomePage} />

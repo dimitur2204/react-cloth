@@ -4,6 +4,7 @@ import { Route, useRouteMatch } from 'react-router';
 import CollectionsOverviewContainer from '../../components/collection/collections-overview/collections-overview.container';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import CollectionPageContainer from '../collection/collection.container';
+import { ShopContainer } from './shop.styles';
 
 export type Collection = {
 	id: string;
@@ -30,7 +31,7 @@ const ShopPage = () => {
 		dispatch(fetchCollectionsStart());
 	}, [dispatch]);
 	return (
-		<div className="shop-page">
+		<ShopContainer>
 			<Route
 				exact
 				path={`${match.path}`}
@@ -40,7 +41,7 @@ const ShopPage = () => {
 				path={`${match.path}/:collectionId`}
 				component={CollectionPageContainer}
 			></Route>
-		</div>
+		</ShopContainer>
 	);
 };
 

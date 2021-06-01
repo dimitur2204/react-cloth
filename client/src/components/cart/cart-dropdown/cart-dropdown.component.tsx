@@ -2,9 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { selectCartItems } from '../../../redux/cart/cart.selectors';
 import CartItem from '../cart-item/cart-item.component';
-import CustomButton from '../../shared/base/custom-button/custom-button.component';
-import './cart-dropdown.styles.scss';
 import { toggleDropdown } from '../../../redux/cart/cart.actions';
+import {
+	CartDropdownButton,
+	CartDropdownContainer,
+	CartItemsContainer,
+	EmptyMessageContainer,
+} from './cart-dropdown.styles';
 
 const CartDropdown = () => {
 	const cartItems = useSelector(selectCartItems);
@@ -16,16 +20,20 @@ const CartDropdown = () => {
 		dispatch(toggleDropdown());
 	};
 	return (
-		<div className="cart-dropdown">
-			<div className="cart-items">
+		<CartDropdownContainer>
+			<CartItemsContainer>
 				{cartItems.length ? (
-					cartItems.map((i) => <CartItem key={i.id} item={i}></CartItem>)
+					cartItems.map((cartItem) => (
+						<CartItem key={cartItem.id} item={cartItem} />
+					))
 				) : (
-					<span className="empty-message">Your cart is empty</span>
+					<EmptyMessageContainer>Your cart is empty</EmptyMessageContainer>
 				)}
-			</div>
-			<CustomButton onClick={toggleCheckoutClick}>GO TO CHECKOUT</CustomButton>
-		</div>
+			</CartItemsContainer>
+			<CartDropdownButton onClick={toggleCheckoutClick}>
+				GO TO CHECKOUT
+			</CartDropdownButton>
+		</CartDropdownContainer>
 	);
 };
 

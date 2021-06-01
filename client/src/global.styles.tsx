@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -47,3 +50,6 @@ a:after {
 a:hover:after {
    transform: scaleX(1); 
 }
+`;
+
+export default GlobalStyle;

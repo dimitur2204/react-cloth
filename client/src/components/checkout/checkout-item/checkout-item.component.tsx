@@ -5,7 +5,13 @@ import {
 	removeItem,
 } from '../../../redux/cart/cart.actions';
 import { CartItem } from '../../../redux/cart/cart.utils';
-import './checkout-item.styles.scss';
+import {
+	CheckoutItemContainer,
+	ImageContainer,
+	QuantityContainer,
+	RemoveButtonContainer,
+	TextContainer,
+} from './checkout-item.styles';
 
 export type CheckoutItemProps = {
 	item: CartItem;
@@ -26,12 +32,12 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
 	};
 
 	return (
-		<div className="checkout-item">
-			<div className="image-container">
+		<CheckoutItemContainer className="checkout-item">
+			<ImageContainer className="image-container">
 				<img src={imageUrl} alt="item" />
-			</div>
-			<div className="name">{name}</div>
-			<div className="quantity">
+			</ImageContainer>
+			<TextContainer className="name">{name}</TextContainer>
+			<QuantityContainer className="quantity">
 				<div className="arrow" onClick={handleDecreaseClicked}>
 					&#10094;
 				</div>
@@ -39,12 +45,15 @@ const CheckoutItem = ({ item }: CheckoutItemProps) => {
 				<div className="arrow" onClick={handleIncreaseClicked}>
 					&#10095;
 				</div>
-			</div>
-			<div className="price">${price}</div>
-			<div onClick={handleRemoveClicked} className="remove-button">
+			</QuantityContainer>
+			<TextContainer className="price">${price}</TextContainer>
+			<RemoveButtonContainer
+				onClick={handleRemoveClicked}
+				className="remove-button"
+			>
 				&#10005;
-			</div>
-		</div>
+			</RemoveButtonContainer>
+		</CheckoutItemContainer>
 	);
 };
 
