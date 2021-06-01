@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -53,6 +53,6 @@ a:after {
 a:hover:after {
    transform: scaleX(1); 
 }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
