@@ -5,44 +5,47 @@ import {
 	selectCartItems,
 	selectCartItemsTotalPrice,
 } from '../../redux/cart/cart.selectors';
-import './checkout.styles.scss';
+import {
+	CheckoutHeaderContainer,
+	CheckoutPageContainer,
+	HeaderBlockContainer,
+	TotalContainer,
+	WarningContainer,
+} from './checkout.styles';
 
 const CheckoutPage = () => {
 	const cartItems = useSelector(selectCartItems);
 	const cartPrice = useSelector(selectCartItemsTotalPrice);
 	return (
-		<div className="checkout-page">
-			<div className="checkout-header">
-				<div className="header-block">
+		<CheckoutPageContainer>
+			<CheckoutHeaderContainer>
+				<HeaderBlockContainer>
 					<span>Product</span>
-				</div>
-				<div className="header-block">
+				</HeaderBlockContainer>
+				<HeaderBlockContainer>
 					<span>Description</span>
-				</div>
-				<div className="header-block">
+				</HeaderBlockContainer>
+				<HeaderBlockContainer>
 					<span>Quantity</span>
-				</div>
-				<div className="header-block">
+				</HeaderBlockContainer>
+				<HeaderBlockContainer>
 					<span>Price</span>
-				</div>
-				<div className="header-block">
+				</HeaderBlockContainer>
+				<HeaderBlockContainer>
 					<span>Remove</span>
-				</div>
-			</div>
+				</HeaderBlockContainer>
+			</CheckoutHeaderContainer>
 			{cartItems.map((cartItem) => (
 				<CheckoutItem key={cartItem.id} item={cartItem} />
 			))}
-
-			<div className="total">
-				<span>Total: ${cartPrice}</span>
-			</div>
-			<div className="test-warning">
-				*Please use the following test credit card for payments
+			<TotalContainer>TOTAL: ${cartPrice}</TotalContainer>
+			<WarningContainer>
+				*Please use the following test credit card for payments*
 				<br />
-				4242 4242 4242 4242 - Exp: 'Any future date' - CVV: 'Any 3 digits'
-			</div>
+				4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+			</WarningContainer>
 			<StripeButton price={cartPrice} />
-		</div>
+		</CheckoutPageContainer>
 	);
 };
 

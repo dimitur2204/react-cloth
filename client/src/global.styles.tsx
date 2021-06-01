@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
@@ -8,6 +11,9 @@ box-sizing: border-box;
 
 .container{
   padding: 20px 60px;
+  @media screen and (max-width: 968px){
+    padding: 10px;
+  }
 }
 
 .link{
@@ -47,3 +53,6 @@ a:after {
 a:hover:after {
    transform: scaleX(1); 
 }
+`;
+
+export default GlobalStyle;

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import withSpinner from '../../components/shared/with-spinner/with-spinner.component';
 import { selectIsCollectionLoaded } from '../../redux/shop/shop.selectors';
-import CollectionPage from './collection.components';
+import CollectionPage from './collection.component';
 
 const CollectionPageWithSpinner = withSpinner(CollectionPage);
 

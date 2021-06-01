@@ -1,12 +1,12 @@
 import SignIn from '../../components/auth/sign-in/sign-in.component';
 import SignUp from '../../components/auth/sign-up/sign-up.component';
-import './sign-in-up.styles.scss';
+import { SignInAndUpContainer } from './sign-in-up.styles';
 
 const SignInUpPage = () => (
-	<div className="sign-in-and-up">
+	<SignInAndUpContainer>
 		<SignIn></SignIn>
 		<SignUp></SignUp>
-	</div>
+	</SignInAndUpContainer>
 );
 
 export default SignInUpPage;

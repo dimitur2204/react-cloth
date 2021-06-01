@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, useRouteMatch } from 'react-router';
-import CollectionsOverviewContainer from '../../components/collection/collections-overview/collections-overview.container';
 import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
-import CollectionPageContainer from '../collection/collection.container';
+import { ShopContainer } from './shop.styles';
+import { SuspenseWithFallBack } from '../../App';
 
 export type Collection = {
 	id: string;
@@ -23,6 +23,15 @@ export type Item = {
 	price: number;
 };
 
+const CollectionsOverviewContainer = lazy(
+	() =>
+		import(
+			'../../components/collection/collections-overview/collections-overview.container'
+		)
+);
+const CollectionPageContainer = lazy(
+	() => import('../collection/collection.container')
+);
 const ShopPage = () => {
 	const match = useRouteMatch();
 	const dispatch = useDispatch();
@@ -30,17 +39,19 @@ const ShopPage = () => {
 		dispatch(fetchCollectionsStart());
 	}, [dispatch]);
 	return (
-		<div className="shop-page">
-			<Route
-				exact
-				path={`${match.path}`}
-				component={CollectionsOverviewContainer}
-			></Route>
-			<Route
-				path={`${match.path}/:collectionId`}
-				component={CollectionPageContainer}
-			></Route>
-		</div>
+		<ShopContainer>
+			<SuspenseWithFallBack>
+				<Route
+					exact
+					path={`${match.path}`}
+					component={CollectionsOverviewContainer}
+				></Route>
+				<Route
+					path={`${match.path}/:collectionId`}
+					component={CollectionPageContainer}
+				></Route>
+			</SuspenseWithFallBack>
+		</ShopContainer>
 	);
 };
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { signUpStart } from '../../../redux/user/user.actions';
 import CustomButton from '../../shared/base/custom-button/custom-button.component';
 import FormInput from '../../shared/form/form-input/form-input.component';
-import './sign-up.styles.scss';
+import { SignUpContainer, SignUpTitle } from './sign-up.styles';
 
 export type SignUpInfo = {
 	[key: string]: string;
@@ -37,8 +37,8 @@ export default function SignUp() {
 	};
 
 	return (
-		<div className="sign-up">
-			<h2 className="title">I do not have an account</h2>
+		<SignUpContainer>
+			<SignUpTitle>I do not have an account</SignUpTitle>
 			<span>Sign up with your email and password</span>
 			<form action="" onSubmit={handleSubmit} className="sign-up-form">
 				<FormInput
@@ -75,6 +75,6 @@ export default function SignUp() {
 				/>
 				<CustomButton type="submit">SIGN UP</CustomButton>
 			</form>
-		</div>
+		</SignUpContainer>
 	);
 }

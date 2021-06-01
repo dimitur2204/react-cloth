@@ -1,5 +1,5 @@
 import { ComponentType } from 'react';
-import { SpinnerContainer, SpinnerOverlay } from './with-spinner.styles';
+import SpinnerComponent from '../spinner/spinner.component';
 
 export type WithSpinnerProps = {
 	isLoading: boolean;
@@ -8,9 +8,7 @@ export type WithSpinnerProps = {
 const withSpinner = (WrappedComponent: ComponentType<WithSpinnerProps>) => {
 	const Spinner = ({ isLoading, ...props }: WithSpinnerProps) => {
 		return isLoading ? (
-			<SpinnerOverlay>
-				<SpinnerContainer />
-			</SpinnerOverlay>
+			<SpinnerComponent />
 		) : (
 			<WrappedComponent {...(props as any)} />
 		);
