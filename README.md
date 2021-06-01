@@ -71,7 +71,7 @@
 ## About The Project
 
 [![React Cloth][product-screenshot]](./client/public/screenshot.png)
-[![React Cloth][product-screenshot]](./client/public/screenshot-mobile.png)
+[![React Cloth][./client/public/screenshot-mobile.jpg]](./client/public/screenshot-mobile.jpg)
 
 A Progressive Web App (PWA) e-commerce platform aimed to show off my React skills. You can check it out live at the link above. You can register with email or sign-in with Google. Add items to your cart and checkout with Stripe.
 ### Built With
