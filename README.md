@@ -183,7 +183,7 @@ Project Link: [https://github.com/dimitur2204/react-cloth](https://github.com/di
 [issues-shield]: https://img.shields.io/github/issues/dimitur2204/react-cloth.svg?style=for-the-badge
 [issues-url]: https://github.com/dimitur2204/react-cloth/issues
 [license-shield]: https://img.shields.io/github/license/dimitur2204/react-cloth.svg?style=for-the-badge
-[license-url]: https://github.com/dimitur2204/react-cloth/blob/master/LICENSE
+[license-url]: https://github.com/dimitur2204/react-cloth/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dimitar-nizamov-9180121a2/
 [product-screenshot]: ./client/public/screenshot.png
