@@ -1,7 +1,7 @@
-import directoryReducer, { INITIAL_STATE } from './directory.reducer';
+import directoryReducer, { INITIAL_STATE } from './directory.reducer'
 
 describe('directoryReducer', () => {
-	it('should return initial state', () => {
-		expect(directoryReducer(undefined, { type: '' })).toEqual(INITIAL_STATE);
-	});
-});
+  it('should return initial state', () => {
+    expect(directoryReducer(undefined, { type: '' })).toEqual(INITIAL_STATE)
+  })
+})

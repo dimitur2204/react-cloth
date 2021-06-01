@@ -22,11 +22,20 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "@types/styled-components": "^5.1.9",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "axios": "^0.21.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
     "firebase": "^8.6.2",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "node-sass": "4.14.1",
+    "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -48,12 +57,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --fix --ext=ts,tsx"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn test"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "yarn run lint"
+    ],
+    "*.{ts,tsx,js,json}": [
+      "yarn run format"
     ]
   },
   "browserslist": {

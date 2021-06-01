@@ -1,0 +1,23 @@
+name: Lint
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'client/**'
+
+jobs:
+  run-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        working-directory: client
+        run: yarn
+
+      - name: Lint client
+        working-directory: client
+        run: yarn lint
