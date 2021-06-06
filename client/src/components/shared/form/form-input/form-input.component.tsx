@@ -8,10 +8,11 @@ export interface FormInputProps extends React.HTMLProps<HTMLInputElement> {
 
 const FormInput = ({ handleChange, label, name, ...props }: FormInputProps) => {
   const value = props.value as string
+  const type = props.type as string
 
   return (
     <GroupContainer className="group">
-      <FormInputContainer type="text" onChange={handleChange} name={name} />
+      <FormInputContainer onChange={handleChange} name={name} type={type} />
       {label ? (
         <FormInputLabel htmlFor="" className={`${value?.length ? 'shrink' : ''}`}>
           {label}
