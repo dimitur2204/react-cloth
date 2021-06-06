@@ -19,6 +19,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault()
+    console.log(credentials)
     const { email, password } = credentials
     dispatch(emailSignInStart(email, password))
   }
